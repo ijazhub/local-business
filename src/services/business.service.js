@@ -43,4 +43,9 @@ module.exports = {
       }))
     );
   },
+  async getById(id) {
+    const business = await businessRepo.findById(id);
+    if (!business) throw new AppError('Business not found', 404);
+    return business;
+  }
 };

@@ -46,4 +46,14 @@ module.exports = {
     }
     return bookingRepo.update(id, { status: BOOKING_STATUS.CANCELLED, cancelledAt: new Date() });
   },
+
+  async getByCustomerId(customerId) {
+    if (!(await customerRepo.findById(customerId))) throw new AppError('Customer not found', 404);
+    return bookingRepo.findByCustomerId(customerId);
+  },
+
+  async getByBusinessId(businessId) {
+    if (!(await businessRepo.findById(businessId))) throw new AppError('Business not found', 404);
+    return bookingRepo.findByBusinessId(businessId);
+  }
 };

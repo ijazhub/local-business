@@ -21,3 +21,6 @@ exports.listServices = asyncHandler(async (req, res) =>
     ),
   ),
 );
+exports.getById = asyncHandler(async (req, res) =>
+  res.json(await businessService.getById(req.params.id)),
+);

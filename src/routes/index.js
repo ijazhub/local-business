@@ -7,6 +7,7 @@ router.get('/categories', business.listCategories);
 
 router.post('/businesses', business.onboard);
 router.get('/businesses', business.listAll);
+router.get('/businesses/:id', business.getById);
 router.get('/businesses/category/:category', business.listByCategory);
 
 router.get('/services', business.listServices);
@@ -16,5 +17,7 @@ router.post('/customers', customer.create);
 router.post('/bookings', booking.book);
 router.get('/bookings/:id', booking.getById);
 router.patch('/bookings/:id/cancel', booking.cancel);
+router.get('/customers/:id/bookings', booking.getByCustomerId);
+router.get('/businesses/:id/bookings', booking.getByBusinessId);
 
 module.exports = router;

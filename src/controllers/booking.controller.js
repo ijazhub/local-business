@@ -10,3 +10,9 @@ exports.getById = asyncHandler(async (req, res) =>
 exports.cancel = asyncHandler(async (req, res) =>
   res.json(await bookingService.cancel(req.params.id)),
 );
+exports.getByCustomerId = asyncHandler(async (req, res) =>
+  res.json(await bookingService.getByCustomerId(req.params.id)),
+);
+exports.getByBusinessId = asyncHandler(async (req, res) =>
+  res.json(await bookingService.getByBusinessId(req.params.id)),
+);

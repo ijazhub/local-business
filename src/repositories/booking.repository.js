@@ -4,4 +4,6 @@ module.exports = {
   create: (data) => Booking.create(data),
   findById: (id) => Booking.findById(id).lean(),
   update: (id, changes) => Booking.findByIdAndUpdate(id, changes, { new: true }).lean(),
+  findByCustomerId: (customerId) => Booking.find({ customerId }).lean(),
+  findByBusinessId: (businessId) => Booking.find({ businessId }).lean(),
 };

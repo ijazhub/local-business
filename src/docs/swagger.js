@@ -27,6 +27,11 @@ module.exports = {
       get: { tags: ['Business'], summary: 'Fetch all businesses',
         responses: { 200: { description: 'OK', content: json({ type: 'array', items: ref('Business') }) } } },
     },
+    '/businesses/{id}': {
+      get: { tags: ['Business'], summary: 'Fetch a business by ID', 
+        parameters: [idParam],
+        responses: { 200: { description: 'OK', content: json(ref('Business')) }, 404: errors[404] } },
+    },
     '/businesses/category/{category}': {
       get: { tags: ['Business'], summary: 'Fetch businesses of one category',
         parameters: [{ name: 'category', in: 'path', required: true, schema: { type: 'string', enum: CATEGORIES } }],
@@ -54,6 +59,14 @@ module.exports = {
     '/bookings/{id}/cancel': {
       patch: { tags: ['Booking'], summary: 'Cancel a booking', parameters: [idParam],
         responses: { 200: { description: 'Cancelled', content: json(ref('Booking')) }, 404: errors[404], 409: errors[409] } },
+    },
+    '/customers/{id}/bookings': {
+      get: { tags: ['Booking'], summary: 'Get all bookings of a customer', parameters: [idParam],
+        responses: { 200: { description: 'OK', content: json({ type: 'array', items: ref('Booking') }) }, 404: errors[404] } },
+    },
+    '/businesses/{id}/bookings': {
+      get: { tags: ['Booking'], summary: 'Get all bookings of a business', parameters: [idParam],
+        responses: { 200: { description: 'OK', content: json({ type: 'array', items: ref('Booking') }) }, 404: errors[404] } },
     },
   },
   components: {
